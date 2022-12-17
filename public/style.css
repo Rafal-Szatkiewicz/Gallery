@@ -1,0 +1,57 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #111927;
+    
+}
+#main
+{
+    width: 100vw;
+    height: 100vh;
+    background-image: 
+        radial-gradient(at 100% 33%, hsl(208, 77%, 40%) 0, transparent 90%), 
+        radial-gradient(at 82% 65%, hsl(218.18, 39%, 11%) 0, transparent 50%);
+    background-repeat: no-repeat;
+}
+.btn-group-vertical
+{
+    backdrop-filter: blur(25px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+    background-color: rgba(17, 25, 40, 0.72) !important;
+    border-right: 2px solid rgba(23, 107, 181, 0.3) !important;
+    position: relative;
+    width: 4.5rem;
+    height: 100%;
+    float: left;
+}
+.btn-group-vertical button
+{
+    border-radius: 0;
+}
+.btn-group-vertical li
+{
+    background: rgba(3, 172, 240, 0) !important;
+    width: 4.5rem;
+    transition: 0.3s;
+}
+.btn-group-vertical li:hover
+{
+    background-color: rgba(36, 59, 226, 0.8) !important;
+    width: 4.5rem;
+    transition: 0.3s;
+}
+.btn-group-vertical img
+{
+    filter: invert(98%) sepia(66%) saturate(6900%) hue-rotate(182deg) brightness(124%) contrast(92%);
+}
+#images
+{
+    backdrop-filter: blur(25px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+    background-color: rgba(17, 25, 40, 0.72) !important;
+    border-right: 2px solid rgba(23, 181, 133, 0.25) !important;
+    height: 100%;
+    width: calc(100vw - 4.5rem);
+    float: right;
+}
