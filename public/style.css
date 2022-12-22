@@ -3,16 +3,23 @@ body
     margin: 0;
     padding: 0;
     background-color: #111927;
-    
+    overflow-x: hidden;
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
-#main
+main
 {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+    /*background-image: url(./img/planets-g9006e83e5_1920.jpg);
+    background-size: 100vh;*/
+    
     background-image: 
-        radial-gradient(at 100% 33%, hsl(208, 77%, 40%) 0, transparent 90%), 
+        radial-gradient(at 75% 33%, hsl(208, 77%, 40%) 0, transparent 90%),
         radial-gradient(at 82% 65%, hsl(218.18, 39%, 11%) 0, transparent 50%);
     background-repeat: no-repeat;
+    
 }
 .btn-group-vertical
 {
@@ -37,6 +44,8 @@ body
 }
 .btn-group-vertical li:hover
 {
+    backdrop-filter: blur(25px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
     background-color: rgba(36, 59, 226, 0.8) !important;
     width: 4.5rem;
     transition: 0.3s;
@@ -50,8 +59,84 @@ body
     backdrop-filter: blur(25px) saturate(200%) !important;
     -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
     background-color: rgba(17, 25, 40, 0.72) !important;
-    border-right: 2px solid rgba(23, 181, 133, 0.25) !important;
     height: 100%;
     width: calc(100vw - 4.5rem);
     float: right;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
+#images img
+{
+    width: 80%;
+    height: 80%;
+    transition: .6s;
+}
+#images img:hover
+{
+    width: 100%;
+    height: 100%;
+    transition: .6s;
+    border-radius: 12px;
+}
+.glass-border
+{
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(4px) saturate(200%);
+    -webkit-backdrop-filter: blur(4px) saturate(200%);
+    background-color: rgba(0, 0, 0, 0.167);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.125);
+    
+    display: flex;
+    justify-content: center;
+}
+.glass
+{
+    background-image: url(./img/img1.jpg);
+    background-size:cover;
+    position: relative;
+    border-radius: 12px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    transition: .3s;
+}
+
+  
+  /* clear fix */
+  .grid:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  
+  /* ---- .grid-item ---- */
+  
+  .grid-item
+  {
+    float: left;
+    width: 30rem;
+    height: 30rem;
+  }
+  
+  .grid-item--width2 { width: 100vw; height: 20rem; }
+  .grid-item--height2 { width: 30rem; height: 100vh; }
+  
+  .grid-item:hover {
+    cursor: move;
+  }
+  
+  .grid-item.is-dragging,
+  .grid-item.is-positioning-post-drag {
+    z-index: 2;
+    transition: .15s;
+  }
+  
+  .packery-drop-placeholder {
+    background-color: rgba(250, 235, 215, 0.16);
+    /*outline: 4px solid hsla(0, 0%, 100%, 0.673);
+    outline-offset: -6px;*/
+    -webkit-transition: -webkit-transform 0.5s;
+            transition: transform 0.5s;
+  }
