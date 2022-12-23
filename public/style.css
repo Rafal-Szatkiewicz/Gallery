@@ -64,6 +64,7 @@ main
     float: right;
     overflow-y: scroll;
     overflow-x: hidden;
+
 }
 #images img
 {
@@ -116,12 +117,24 @@ main
   .grid-item
   {
     float: left;
-    width: 30rem;
+    width: 25%;
     height: 30rem;
+    min-width: 20rem;
+    max-width: 25%;
   }
   
-  .grid-item--width2 { width: 100vw; height: 20rem; }
-  .grid-item--height2 { width: 30rem; height: 100vh; }
+  .grid-item--width2 {
+    width: 100vw; 
+    height: 20rem; 
+    min-width: 100vw;
+    max-width: 100vw;
+    }
+  .grid-item--height2 {
+    width: 30rem; 
+    height: 100vh; 
+    min-width: 20rem;
+    max-width: 25%;
+    }
   
   .grid-item:hover {
     cursor: move;
