@@ -8,19 +8,33 @@
 body 
 {
     height: 100vh;
+    
+    background-image: url(./img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: 0%;
+}
+main
+{
+    width: 100vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #0d6efd;
-}
 
+    backdrop-filter: blur(25px) saturate(100%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(100%) !important;
+    background-color: #121212d1 !important;
+}
 .login 
 {
     width: 360px;
     height: min-content;
     padding: 20px;
-    border-radius: 12px;
-    background: #ffffff;
+    color: whitesmoke;
+    border-radius: 36px;
+    background: #121212;
+    box-shadow: inset 9px 9px 18px #070707,
+            inset -9px -9px 18px #1d1d1d;
 }
 
 .login h1 
@@ -43,4 +57,27 @@ body
 {
     font-size: 20px;
     margin-top: 15px;
+}
+.form-control,.form-control:valid ,.form-control:focus
+{
+    color: whitesmoke;
+    background-color: #121212;
+}
+.btn
+{
+    transition: .5s;
+    color: whitesmoke;
+    border-radius: 15px;
+    background: #121212;
+    box-shadow:  5px 5px 10px #070707,
+             -5px -5px 10px #1d1d1d !important;
+}
+.btn:hover
+{
+    transition: .5s;
+    color: rgba(245, 245, 245, 0.21);
+    border-radius: 15px;
+    background: #121212;
+    box-shadow:  5px 5px 10px #0707071c,
+             -5px -5px 10px #1d1d1d36 !important;
 }
