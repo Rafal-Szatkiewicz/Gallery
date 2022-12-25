@@ -15,17 +15,16 @@ main
     /*background-image: url(./img/planets-g9006e83e5_1920.jpg);
     background-size: 100vh;*/
     
-    background-image: 
-        radial-gradient(at 75% 33%, hsl(208, 77%, 40%) 0, transparent 90%),
-        radial-gradient(at 82% 65%, hsl(218.18, 39%, 11%) 0, transparent 50%);
+    background-image: url(./img/background.jpg);
     background-repeat: no-repeat;
+    background-position: 0%;
     
 }
 .btn-group-vertical
 {
-    backdrop-filter: blur(25px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
-    background-color: rgba(17, 25, 40, 0.72) !important;
+    backdrop-filter: blur(25px) saturate(100%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(100%) !important;
+    background-color: #121212d1 !important;
     border-right: 2px solid rgba(23, 107, 181, 0.3) !important;
     position: relative;
     width: 4.5rem;
@@ -56,9 +55,9 @@ main
 }
 #images
 {
-    backdrop-filter: blur(25px) saturate(200%) !important;
-    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
-    background-color: rgba(17, 25, 40, 0.72) !important;
+    backdrop-filter: blur(30px) saturate(100%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(100%) !important;
+    background-color: #121212d1 !important;
     height: 100%;
     width: calc(100vw - 4.5rem);
     float: right;
