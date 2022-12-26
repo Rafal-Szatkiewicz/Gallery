@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Rafal-Szatkiewicz/Gallery#readme",
   "dependencies": {
+    "cloudinary": "^1.33.0",
     "draggabilly": "^3.0.0",
     "packery": "^2.1.2",
     "webpack": "^5.75.0",
