@@ -2,3 +2,4 @@
 /mongodb.txt
 /.env
 public/test.html
+src/index.js
