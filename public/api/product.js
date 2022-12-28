@@ -135,7 +135,7 @@
   //html += '<div class="grid-item bg-dark grid-item--width2"></div><div class="grid-item bg-dark grid-item--width2"></div><div class="grid-item bg-dark grid-item--width2"></div><div class="grid-item bg-dark grid-item--height2"></div><div class="grid-item bg-dark grid-item--height2"></div><div class="grid-item bg-dark grid-item--height2"></div></div></div>';
 
   // Read the HTML file
-  const file = await fs.promises.readFile(path.join(__dirname, '../gallery.html'), 'utf8');
+  const file = await fs.promises.readFile(path.join(__dirname, './gallery.html'), 'utf8');
 
   // Replace the placeholder element with the generated HTML
   const output = file.replace('<dir id="last"></dir>', html);
