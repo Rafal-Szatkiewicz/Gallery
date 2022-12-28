@@ -82,6 +82,10 @@
   
   router.get('/', async (req, res) => {
     // Connect to the MongoDB database
+    res.writeHead(200, {'Content-type' : 'text/css'});
+    var fileContents = fs.readFileSync('./styles.css', {encoding: 'utf8'});
+    res.write(fileContents);
+
     console.log('gallery entered');
     const client = await mongodb.MongoClient.connect(mongoUrl, {
       useNewUrlParser: true,
