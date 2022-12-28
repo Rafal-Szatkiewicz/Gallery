@@ -80,7 +80,7 @@
     res.redirect('/gallery');
   });
   
-  router.get('/', async (req, res) => {
+  router.get('/gallery', async (req, res) => {
     // Connect to the MongoDB database
 
     console.log('gallery entered');
@@ -144,4 +144,12 @@
   // Send the HTML file to the client
   res.send(output);
 });
+router.get('/', async (req, res) => {
+
+    const file = await fs.promises.readFile(path.join(__dirname, './index.html'), 'utf8');
+    let html = `<style>* {    margin: 0;    padding: 0;    box-sizing: border-box;}body {    height: 100vh;        background-image: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg);    background-repeat: no-repeat;    background-position: 0%;}main{    width: 100vw;    height: 100vh;    display: flex;    align-items: center;    justify-content: center;    backdrop-filter: blur(25px) saturate(100%) !important;    -webkit-backdrop-filter: blur(25px) saturate(100%) !important;    background-color: #121212d1 !important;}.login {    width: 360px;    height: min-content;    padding: 20px;    color: whitesmoke;    border-radius: 36px;    background: #121212;    box-shadow: inset 9px 9px 18px #070707,            inset -9px -9px 18px #1d1d1d;}.login h1 {    font-size: 36px;    margin-bottom: 25px;}.login form {    font-size: 20px;}.login form .form-group {    margin-bottom: 12px;}.login form input[type='submit'] {    font-size: 20px;    margin-top: 15px;}.form-control,.form-control:valid ,.form-control:focus{    color: whitesmoke;    background-color: #121212;}.btn{    transition: .5s;    color: whitesmoke;    border-radius: 15px;    background: #121212;    box-shadow:  5px 5px 10px #070707,             -5px -5px 10px #1d1d1d !important;}.btn:hover{    transition: .5s;    color: rgba(245, 245, 245, 0.21);    border-radius: 15px;    background: #121212;    box-shadow:  5px 5px 10px #0707071c,             -5px -5px 10px #1d1d1d36 !important;}</style>`;
+    const output = file.replace('<link rel="stylesheet" href="style2.css">', html);
+    res.send(output);
+});
+
 module.exports = router;
