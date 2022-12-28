@@ -10,8 +10,8 @@
 
   // external js: packery.pkgd.js, draggabilly.pkgd.js
   const mongodb = require('mongodb');
-  const cloudinary = require('cloudinary');
-  //const cloudinary = require('cloudinary-core').Cloudinary.new();
+  //const cloudinary = require('cloudinary');
+  const cloudinary = require('cloudinary-core').Cloudinary.new();
   const express = require('express');
   const fileUpload = require('express-fileupload');
   const path = require('path');
