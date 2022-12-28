@@ -1,1 +1,4 @@
 /node_modules
+/mongodb.txt
+/.env
+public/test.html

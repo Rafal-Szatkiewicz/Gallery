@@ -70,6 +70,7 @@ main
     width: 80%;
     height: 80%;
     transition: .6s;
+    object-fit: cover;
 }
 #images img:hover
 {
@@ -93,8 +94,9 @@ main
 }
 .glass
 {
-    background-image: url(./img/img1.jpg);
-    background-size:cover;
+    /*background-image: url(./img/img1.jpg);*/
+    background-size:cover !important;
+    background-repeat: no-repeat !important;
     position: relative;
     border-radius: 12px;
     float: left;
@@ -117,16 +119,16 @@ main
   {
     float: left;
     width: 25%;
-    height: 30rem;
+    height: 50vh;
     min-width: 20rem;
     max-width: 25%;
   }
   
   .grid-item--width2 {
-    width: 100vw; 
-    height: 20rem; 
-    min-width: 100vw;
-    max-width: 100vw;
+    width: 75%; 
+    height: 50vh; 
+    min-width: calc(100vh - 20rem);
+    max-width: 75%;
     }
   .grid-item--height2 {
     width: 30rem; 
@@ -151,4 +153,8 @@ main
     outline-offset: -6px;*/
     -webkit-transition: -webkit-transform 0.5s;
             transition: transform 0.5s;
+  }
+  #last
+  {
+    display: none;
   }
