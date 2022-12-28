@@ -142,5 +142,6 @@
 
   // Send the HTML file to the client
   res.send(output);
+  res.sendFile("style.css");
 });
 module.exports = router;
