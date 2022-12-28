@@ -12,8 +12,6 @@ main
 {
     width: 100vw;
     height: 100%;
-    /*background-image: url(./img/planets-g9006e83e5_1920.jpg);
-    background-size: 100vh;*/
     
     background-image: url(./img/background.jpg);
     background-repeat: no-repeat;
@@ -94,7 +92,6 @@ main
 }
 .glass
 {
-    /*background-image: url(./img/img1.jpg);*/
     background-size:cover !important;
     background-repeat: no-repeat !important;
     position: relative;
@@ -106,14 +103,12 @@ main
 }
 
   
-  /* clear fix */
   .grid:after {
     content: '';
     display: block;
     clear: both;
   }
   
-  /* ---- .grid-item ---- */
   
   .grid-item
   {
@@ -149,8 +144,6 @@ main
   
   .packery-drop-placeholder {
     background-color: rgba(250, 235, 215, 0.16);
-    /*outline: 4px solid hsla(0, 0%, 100%, 0.673);
-    outline-offset: -6px;*/
     -webkit-transition: -webkit-transform 0.5s;
             transition: transform 0.5s;
   }
