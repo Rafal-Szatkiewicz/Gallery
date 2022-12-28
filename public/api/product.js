@@ -38,7 +38,7 @@
   }));
   router.use(express.json());
   router.use(express.urlencoded({extended: true}));
-  router.use(express.static(path.join(__dirname, '')));
+  router.use(express.static('./api'));
   
   // Set up the route for the HTML form
   router.post('/upload', async (req, res) => {
