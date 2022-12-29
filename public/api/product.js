@@ -80,6 +80,34 @@ const { disconnect } = require('process');
   
     res.redirect('/gallery');
   });
+  router.post('/signedIn', async (req, res) =>{
+
+    const username = req.body.username;
+    const password = req.body.password;
+
+    const client = await mongodb.MongoClient.connect(mongoUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    const db = client.db('gallery');
+  
+    const verify = await db.collection('users').findOne({username: username});
+    console.log(verify);
+
+    if(verify === null || password != verify.password)
+    {
+
+      client.close();
+      console.log("invalid data");
+      res.redirect('/invalidLogin');
+    }
+    else
+    {
+      console.log("logged in");
+      client.close();
+      res.redirect('/gallery');
+    }
+  });
   router.post('/signedUp', async (req, res) =>{
 
     const username = req.body.usernameSignUp;
@@ -95,12 +123,6 @@ const { disconnect } = require('process');
     console.log(distinct);
     if(distinct === null)
     {
-      /*const output = file.replace('<div class="form-group" id="usernameSignUpValidation">', '<div class="form-group was-validated" id="usernameSignUpValidation">');
-      const validation = document.getElementById("usernameSignUpValidation");
-      const inputValidation = document.getElementById("usernameSignUp");
-      validation.classList.add("was-validated");
-      inputValidation.classList.remove("is-invalid")*/
-
       console.log("new user added");
       await db.collection('users').insertOne({ username: username, password: password});
       client.close();
@@ -108,13 +130,9 @@ const { disconnect } = require('process');
     }
     else
     {
-      /*const validation = document.getElementById("usernameSignUpValidation");
-      const inputValidation = document.getElementById("usernameSignUp");
-      validation.classList.remove("was-validated");
-      inputValidation.classList.add("is-invalid")*/
       client.close();
       console.log("username taken");
-      res.redirect('/invalid/');
+      res.redirect('/invalid');
     }
 
   });
@@ -199,4 +217,12 @@ const { disconnect } = require('process');
     file = file.replace('Please enter your email username <span></span>', 'This username is already taken');
     res.send(file);
   });
+  router.get('/invalidLogin', async (req, res) => {
+
+    let file = await fs.promises.readFile(path.join(__dirname, './index.html'), 'utf8');
+      file = file.replace('<link rel="stylesheet" href="style2.css">', htmlIndex);
+      file = file.replace('Please enter your email username <span class="check"></span>', 'Invalid username or password');
+      file = file.replace('Please enter your password <span class="check"></span>', 'Invalid username or password');
+      res.send(file);
+    });
 module.exports = router;

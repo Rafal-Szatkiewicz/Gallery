@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "14.x"
+    "node": "17.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Rafal-Szatkiewicz/Gallery#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cloudinary": "^1.33.0",
     "dotenv": "^16.0.3",
     "draggabilly": "^3.0.0",
