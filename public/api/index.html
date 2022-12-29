@@ -62,7 +62,7 @@
                                 <label class="form-check-label" for="check">Remember me</label>
                             </div>-->
                             <div class="signup d-flex justify-content-center align-items-center">
-                               <span> Don't have an account? <a href="#">Create One</a></span>
+                               <span> Already have an account? <a id="signInButton" href="#">Sign In</a></span>
                             </div>
                             <input class="btn w-100" type="submit" value="LOGIN">
                         </form>
@@ -70,12 +70,19 @@
             </main>
             <script>
                 const signUpButton = document.getElementById("signUpButton");
+                const signInButton = document.getElementById("signInButton");
                 signUpButton.addEventListener("click", signUpMove);
+                signInButton.addEventListener("click", signInMove);
 
                 function signUpMove()
                 {
                     const main = document.getElementById("main");
                     main.style.transform = "translateY(-100vh)";
+                }
+                function signInMove()
+                {
+                    const main = document.getElementById("main");
+                    main.style.transform = "translateY(0vh)";
                 }
             </script>
         </div>
