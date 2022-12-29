@@ -11,33 +11,73 @@
     </head>
     <body>
         <div id="background">
-            <main>
-                <div class="login">
-                    <h1 class="text-center">Login</h1>
-            
-                    <form class="needs-validation">
-                        <div class="form-group was-validated">
-                            <label class="form-label" for="email">Username</label>
-                            <input class="form-control" type="text" id="username" required>
-                            <div class="invalid-feedback">
-                                Please enter your email username
+            <main id="main">
+                    <div class="login">
+                        <h1 class="text-center">Login</h1>
+                        <form class="needs-validation">
+                            <div class="form-group was-validated">
+                                <label class="form-label" for="email">Username</label>
+                                <input class="form-control" type="text" id="username" required>
+                                <div class="invalid-feedback">
+                                    Please enter your email username
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group was-validated">
-                            <label class="form-label" for="password">Password</label>
-                            <input class="form-control" type="password" id="password" required>
-                            <div class="invalid-feedback">
-                                Please enter your password
+                            <div class="form-group was-validated">
+                                <label class="form-label" for="password">Password</label>
+                                <input class="form-control" type="password" id="password" required>
+                                <div class="invalid-feedback">
+                                    Please enter your password
+                                </div>
                             </div>
-                        </div>
-                        <!--<div class="form-group form-check">
-                            <input class="form-check-input" type="checkbox" id="check">
-                            <label class="form-check-label" for="check">Remember me</label>
-                        </div>-->
-                        <input class="btn w-100" type="submit" value="LOGIN">
-                    </form>
-                </div>
+                            <!--<div class="form-group form-check">
+                                <input class="form-check-input" type="checkbox" id="check">
+                                <label class="form-check-label" for="check">Remember me</label>
+                            </div>-->
+                            <div class="signup d-flex justify-content-center align-items-center">
+                               <span> Don't have an account? <a id="signUpButton" href="#">Create One</a></span>
+                            </div>
+                            <input class="btn w-100" type="submit" value="LOGIN">
+                        </form>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <div class="login" id="login2">
+                        <h1 class="text-center">Login</h1>
+                        <form class="needs-validation">
+                            <div class="form-group was-validated">
+                                <label class="form-label" for="email">Username</label>
+                                <input class="form-control" type="text" id="usernameSignUp" required>
+                                <div class="invalid-feedback">
+                                    Please enter your email username
+                                </div>
+                            </div>
+                            <div class="form-group was-validated">
+                                <label class="form-label" for="password">Password</label>
+                                <input class="form-control" type="password" id="passwordSignUp" required>
+                                <div class="invalid-feedback">
+                                    Please enter your password
+                                </div>
+                            </div>
+                            <!--<div class="form-group form-check">
+                                <input class="form-check-input" type="checkbox" id="check">
+                                <label class="form-check-label" for="check">Remember me</label>
+                            </div>-->
+                            <div class="signup d-flex justify-content-center align-items-center">
+                               <span> Don't have an account? <a href="#">Create One</a></span>
+                            </div>
+                            <input class="btn w-100" type="submit" value="LOGIN">
+                        </form>
+                    </div>
             </main>
+            <script>
+                const signUpButton = document.getElementById("signUpButton");
+                signUpButton.addEventListener("click", signUpMove);
+
+                function signUpMove()
+                {
+                    const main = document.getElementById("main");
+                    main.style.transform = "translateY(-100vh)";
+                }
+            </script>
         </div>
     </body>
 </html>

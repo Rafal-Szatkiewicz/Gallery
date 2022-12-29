@@ -3,27 +3,30 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 body 
 {
     height: 100vh;
     
-    background-image: url(./img/background.jpg);
+    background-image: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg);
     background-repeat: no-repeat;
     background-position: 0%;
 }
 main
 {
     width: 100vw;
-    height: 100vh;
+    height: 200vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
     backdrop-filter: blur(25px) saturate(100%) !important;
     -webkit-backdrop-filter: blur(25px) saturate(100%) !important;
     background-color: #121212d1 !important;
+    transition: 2s;
 }
 .login 
 {
@@ -80,4 +83,13 @@ main
     background: #121212;
     box-shadow:  5px 5px 10px #0707071c,
              -5px -5px 10px #1d1d1d36 !important;
+}
+.signup
+{
+    font-size: 20px;
+}
+.signup a
+{
+    text-decoration: none;
+    font-weight: bold;
 }
