@@ -16,8 +16,8 @@
   const fileUpload = require('express-fileupload');
   const path = require('path');
   const fs = require('fs');
-const { disconnect } = require('process');
   const router = express.Router();
+  const bcrypt = require('bcrypt');
   require("dotenv").config();
   
   // Replace with your Cloudinary API key and secret
@@ -92,9 +92,11 @@ const { disconnect } = require('process');
     const db = client.db('gallery');
   
     const verify = await db.collection('users').findOne({username: username});
-    console.log(verify);
+    //console.log(verify);
+    let verifyHash = false;
+    verifyHash = await bcrypt.compare(password, verify.password)
 
-    if(verify === null || password != verify.password)
+    if(verify === null || verifyHash == false)
     {
 
       client.close();
@@ -110,8 +112,11 @@ const { disconnect } = require('process');
   });
   router.post('/signedUp', async (req, res) =>{
 
+    const salt = await bcrypt.genSalt(10);
+
     const username = req.body.usernameSignUp;
-    const password = req.body.passwordSignUp;
+    const password = await bcrypt.hash(req.body.passwordSignUp, salt);
+
 
     const client = await mongodb.MongoClient.connect(mongoUrl, {
       useNewUrlParser: true,
@@ -120,7 +125,6 @@ const { disconnect } = require('process');
     const db = client.db('gallery');
   
     const distinct = await db.collection('users').findOne({username: username});
-    console.log(distinct);
     if(distinct === null)
     {
       console.log("new user added");
