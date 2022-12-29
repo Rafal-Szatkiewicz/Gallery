@@ -72,8 +72,8 @@ main
     color: whitesmoke;
     border-radius: 15px;
     background: #121212;
-    box-shadow:  5px 5px 10px #070707,
-             -5px -5px 10px #1d1d1d !important;
+    box-shadow: inset -3px -3px 10px #070707,
+            inset 3px 3px 10px #1d1d1d !important;
 }
 .btn:hover
 {
@@ -81,15 +81,19 @@ main
     color: rgba(245, 245, 245, 0.21);
     border-radius: 15px;
     background: #121212;
-    box-shadow:  5px 5px 10px #0707071c,
-             -5px -5px 10px #1d1d1d36 !important;
+    box-shadow: inset -3px -3px 10px #0707071c,
+            inset 3px 3px 10px #1d1d1d36 !important;
 }
 .signup
 {
-    font-size: 20px;
+    font-size: 17px;
 }
 .signup a
 {
     text-decoration: none;
     font-weight: bold;
+}
+.text-center
+{
+    padding-bottom: 5px;
 }

@@ -16,6 +16,7 @@
   const fileUpload = require('express-fileupload');
   const path = require('path');
   const fs = require('fs');
+const { disconnect } = require('process');
   const router = express.Router();
   require("dotenv").config();
   
@@ -90,27 +91,32 @@
     });
     const db = client.db('gallery');
   
-    const distinct = await db.collection('users').find({username: username});
-    if(distinct.length == 0)
+    const distinct = await db.collection('users').findOne({username: username});
+    console.log(distinct);
+    if(distinct === null)
     {
+      /*const output = file.replace('<div class="form-group" id="usernameSignUpValidation">', '<div class="form-group was-validated" id="usernameSignUpValidation">');
       const validation = document.getElementById("usernameSignUpValidation");
       const inputValidation = document.getElementById("usernameSignUp");
       validation.classList.add("was-validated");
-      inputValidation.classList.remove("is-invalid")
+      inputValidation.classList.remove("is-invalid")*/
 
+      console.log("new user added");
       await db.collection('users').insertOne({ username: username, password: password});
+      client.close();
+      res.redirect('/gallery');
     }
     else
     {
-      const validation = document.getElementById("usernameSignUpValidation");
+      /*const validation = document.getElementById("usernameSignUpValidation");
       const inputValidation = document.getElementById("usernameSignUp");
       validation.classList.remove("was-validated");
-      inputValidation.classList.add("is-invalid")
+      inputValidation.classList.add("is-invalid")*/
+      client.close();
+      console.log("username taken");
+      res.redirect('/invalid/');
     }
 
-    client.close();
-  
-    res.redirect('/gallery');
   });
   
   router.get('/gallery', async (req, res) => {
@@ -177,12 +183,20 @@
   // Send the HTML file to the client
   res.send(output);
   });
+
+  let htmlIndex = `<style>* {    margin: 0;    padding: 0;    box-sizing: border-box;    overflow: hidden;}body {    height: 100vh;        background-image: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg);    background-repeat: no-repeat;    background-position: 0%;}main{    width: 100vw;    height: 200vh;    display: flex;    align-items: center;    justify-content: center;    flex-direction: column;    backdrop-filter: blur(25px) saturate(100%) !important;    -webkit-backdrop-filter: blur(25px) saturate(100%) !important;    background-color: #121212d1 !important;    transition: 2s;}.login {    width: 360px;    height: min-content;    padding: 20px;    color: whitesmoke;    border-radius: 36px;    background: #121212;    box-shadow: inset 9px 9px 18px #070707,            inset -9px -9px 18px #1d1d1d;}.login h1 {    font-size: 36px;    margin-bottom: 25px;}.login form {    font-size: 20px;}.login form .form-group {    margin-bottom: 12px;}.login form input[type='submit'] {    font-size: 20px;    margin-top: 15px;}.form-control,.form-control:valid ,.form-control:focus{    color: whitesmoke;    background-color: #121212;}.btn{    transition: .5s;    color: whitesmoke;    border-radius: 15px;    background: #121212;    box-shadow: inset -3px -3px 10px #070707,            inset 3px 3px 10px #1d1d1d !important;}.btn:hover{    transition: .5s;    color: rgba(245, 245, 245, 0.21);    border-radius: 15px;    background: #121212;    box-shadow: inset -3px -3px 10px #0707071c,            inset 3px 3px 10px #1d1d1d36 !important;}.signup{    font-size: 17px;}.signup a{    text-decoration: none;    font-weight: bold;}.text-center{    padding-bottom: 5px;}</style>`;
+
   router.get('/', async (req, res) => {
 
     const file = await fs.promises.readFile(path.join(__dirname, './index.html'), 'utf8');
-    let html = `<style>* {    margin: 0;    padding: 0;    box-sizing: border-box;    overflow: hidden;}body {    height: 100vh;        background-image: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg);    background-repeat: no-repeat;    background-position: 0%;}main{    width: 100vw;    height: 200vh;    display: flex;    align-items: center;    justify-content: center;    flex-direction: column;    backdrop-filter: blur(25px) saturate(100%) !important;    -webkit-backdrop-filter: blur(25px) saturate(100%) !important;    background-color: #121212d1 !important;    transition: 2s;}.login {    width: 360px;    height: min-content;    padding: 20px;    color: whitesmoke;    border-radius: 36px;    background: #121212;    box-shadow: inset 9px 9px 18px #070707,            inset -9px -9px 18px #1d1d1d;}.login h1 {    font-size: 36px;    margin-bottom: 25px;}.login form {    font-size: 20px;}.login form .form-group {    margin-bottom: 12px;}.login form input[type='submit'] {    font-size: 20px;    margin-top: 15px;}.form-control,.form-control:valid ,.form-control:focus{    color: whitesmoke;    background-color: #121212;}.btn{    transition: .5s;    color: whitesmoke;    border-radius: 15px;    background: #121212;    box-shadow: inset -3px -3px 10px #070707,inset 3px 3px 10px #1d1d1d !important; }.btn:hover{    transition: .5s;    color: rgba(245, 245, 245, 0.21);    border-radius: 15px;    background: #121212;    box-shadow:  inset -3px -3px 10px #0707071c,inset 3px 3px 10px #1d1d1d36 !important;}.signup{    font-size: 20px;}.signup a{    text-decoration: none;    font-weight: bold;}</style>`;
-    const output = file.replace('<link rel="stylesheet" href="style2.css">', html);
+    const output = file.replace('<link rel="stylesheet" href="style2.css">', htmlIndex);
     res.send(output);
   });
+  router.get('/invalid', async (req, res) => {
 
+  let file = await fs.promises.readFile(path.join(__dirname, './index.html'), 'utf8');
+    file = file.replace('<link rel="stylesheet" href="style2.css">', htmlIndex);
+    file = file.replace('Please enter your email username <span></span>', 'This username is already taken');
+    res.send(file);
+  });
 module.exports = router;
