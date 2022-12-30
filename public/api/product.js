@@ -36,7 +36,8 @@
   // Enable file uploads
   router.use(fileUpload({
     createParentPath: true,
-    useTempFiles: true
+    useTempFiles: true,
+    tempFileDir: path.join(__dirname, './tmp/')
   }));
   router.use(express.json());
   router.use(express.urlencoded({extended: true}));
