@@ -46,18 +46,19 @@
             
               <div id="images">
                 <div class="grid">
-                  <div class="grid-item bg-dark grid-item--width2"></div>
+                  <!--<div class="grid-item bg-dark grid-item--width2"></div>
                   <div class="glass grid-item grid-sizer"><div class="glass-border d-flex justify-content-center align-items-center"><img src="./img/img1.jpg"alt=""></div></div>
-                  <div class="gridbg-dark grid-item--height2"></div>
+                  <div class="gridbg-dark grid-item--height2"></div>-->
                   <dir id="last"></dir>
                   <form action="/upload" enctype="multipart/form-data" method="POST" id="uploadForm">
                     <div class="drag-area grid-item grid-item--width3">
                       <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                       <header>Drag & Drop to Upload File</header>
                       <span>OR</span>
-                      <button type="button">Browse File</button>
-                      <input type="file" name="image" id="uploadHidden" >
-                      <input type="submit" value="SEND">
+                      <button type="button" class="uploadButton">Browse File</button>
+                      <input type="file" name="image" id="uploadHidden" hidden>
+                      <br>
+                      <input type="submit" value="SEND" class="uploadButton">
                     </div>
                   </form>
                 </div>

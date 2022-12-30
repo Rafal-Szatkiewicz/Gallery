@@ -186,7 +186,7 @@ main
     color: #fff;
     margin: 10px 0 15px 0;
   }
-  .drag-area button{
+  .drag-area .uploadButton{
     padding: 10px 25px;
     font-size: 20px;
     font-weight: 500;
