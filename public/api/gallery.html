@@ -175,11 +175,21 @@
               input.files = dT.files;
               let fileSize = input.files[0].size;
               fileSize = fileSize/1024/1024
-              console.log(fileSize, 'filesize');
+              //console.log(fileSize, 'filesize');
               if(fileSize < 4.5)
               {
+                const fileReader = new FileReader();
+                
+                fileReader.onload = () => {
+                  dropArea.style.backgroundImage = `url(${fileReader.result})`;
+                };
+                fileReader.readAsDataURL(file);
                 dropArea.classList.remove("active");
                 dragText.textContent = "Drag & Drop to Upload File";
+                
+                dropArea.style.backgroundSize = "contain";
+                dropArea.style.backgroundRepeat = 'no-repeat';
+                dropArea.style.backgroundPosition = 'center';
               }
               else
               {

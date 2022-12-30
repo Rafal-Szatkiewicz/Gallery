@@ -3,7 +3,6 @@ body
     margin: 0;
     padding: 0;
     background-color: #111927;
-    overflow-x: hidden;
     height: 100vh;
     overflow-y: hidden;
     overflow-x: hidden;
@@ -159,7 +158,8 @@ main
     display: none;
   }
   .drag-area{
-    border: 3px dashed #fff;
+    outline: 3px dashed #fff;
+    outline-offset: -3px;
     height: 500px !important;
     border-radius: 5px;
     display: flex;
@@ -169,8 +169,9 @@ main
     transition: 0.5s;
   }
   .drag-area.active{
-    transition: 0.5s;
-    border: 3px solid #fff;
+    transition: 0.5s; 
+    outline: 3px solid #fff;
+    outline-offset: -20px;
   }
   .drag-area .icon{
     font-size: 100px;
