@@ -17,7 +17,7 @@
   const path = require('path');
   const fs = require('fs');
   const router = express.Router();
-  const bcrypt = require('bcrypt');
+  const bcrypt = require('bcryptjs');
   require("dotenv").config();
   
   // Replace with your Cloudinary API key and secret
