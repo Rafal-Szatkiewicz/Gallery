@@ -78,7 +78,16 @@
             pckry.bindDraggabillyEvents( draggie );
           });
 
-
+          function deleteImage(button,publicId)
+          {
+            let form = button.parentElement;
+            const hiddenField = document.createElement('input');
+            hiddenField.type = 'hidden';
+            hiddenField.name = 'id';
+            hiddenField.value = publicId;
+            form.appendChild(hiddenField);
+            form.submit();
+          }
           
           function imageClick(el)
           {
@@ -99,6 +108,7 @@
                 elements[i].style.padding = '10px 25px';
                 elements[i].style.color = 'rgb(41, 41, 41)';
                 elements[i].style.background = 'rgb(255, 255, 255)';
+                elements[i].classList.remove('noHover');
               }
             el.addEventListener("mouseleave", ()=>
             {
@@ -113,6 +123,7 @@
                     elements[i].style.padding = '0px 0px';
                     elements[i].style.color = 'rgb(41, 41, 41, 0)';
                     elements[i].style.background = 'rgb(255, 255, 255, 0)';
+                    elements[i].classList.add('noHover');
                   }
                 }
             });
