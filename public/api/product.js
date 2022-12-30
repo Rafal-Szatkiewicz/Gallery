@@ -37,7 +37,7 @@
   router.use(fileUpload({
     createParentPath: true,
     useTempFiles: true,
-    tempFileDir: path.join(__dirname, './tmp/')
+    tempFileDir: path.join(__dirname, '')
   }));
   router.use(express.json());
   router.use(express.urlencoded({extended: true}));
