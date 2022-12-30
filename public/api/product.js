@@ -54,9 +54,7 @@
     console.log(file.tempFilePath);
   
     // Upload the file to Cloudinary
-    const result = await cloudinary.uploader.upload(file.tempFilePath).catch((error) =>{
-      console.log(error);
-    });;
+    const result = await cloudinary.uploader.upload(file.tempFilePath);
     //console.log(result);
     const imageUrl = result.url;
     const version = result.version;
