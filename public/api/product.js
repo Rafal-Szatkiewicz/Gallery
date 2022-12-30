@@ -32,13 +32,12 @@
   let username = ''; //global variable for documents relations;
   
   //const app = express();
-  console.log(__dirname);
   
   // Enable file uploads
   router.use(fileUpload({
     createParentPath: true,
     useTempFiles: true,
-    tempFileDir: __dirname
+    tempFileDir: path.join(__dirname, './tmp/')
   }));
   router.use(express.json());
   router.use(express.urlencoded({extended: true}));
