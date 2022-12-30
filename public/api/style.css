@@ -125,6 +125,12 @@ main
     min-width: calc(100vh - 20rem);
     max-width: 75%;
     }
+    .grid-item--width3 {
+      width: 100%; 
+      height: 50vh; 
+      min-width: calc(100vh - 20rem);
+      max-width: 100%;
+      }
   .grid-item--height2 {
     width: 30rem; 
     height: 100vh; 
@@ -150,4 +156,50 @@ main
   #last
   {
     display: none;
+  }
+  .drag-area{
+    border: 3px dashed #fff;
+    height: 500px !important;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: 0.5s;
+  }
+  .drag-area.active{
+    transition: 0.5s;
+    border: 3px solid #fff;
+  }
+  .drag-area .icon{
+    font-size: 100px;
+    color: #fff;
+  }
+  .drag-area header{
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .drag-area span{
+    font-size: 25px;
+    font-weight: 500;
+    color: #fff;
+    margin: 10px 0 15px 0;
+  }
+  .drag-area button{
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: rgb(41, 41, 41);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .drag-area img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
   }
