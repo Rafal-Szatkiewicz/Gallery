@@ -52,7 +52,6 @@
   
     // Get the uploaded file
     const file = req.files.image;
-    console.log(file.tempFilePath);
   
     // Upload the file to Cloudinary
     const result = await cloudinary.uploader.upload(file.tempFilePath);

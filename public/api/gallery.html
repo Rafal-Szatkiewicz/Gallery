@@ -50,13 +50,13 @@
                   <div class="glass grid-item grid-sizer"><div class="glass-border d-flex justify-content-center align-items-center"><img src="./img/img1.jpg"alt=""></div></div>
                   <div class="gridbg-dark grid-item--height2"></div>
                   <dir id="last"></dir>
-                  <form action="/upload" enctype="multipart/form-data" method="POST">
+                  <form action="/upload" enctype="multipart/form-data" method="POST" id="uploadForm">
                     <div class="drag-area grid-item grid-item--width3">
                       <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                       <header>Drag & Drop to Upload File</header>
                       <span>OR</span>
                       <button type="button">Browse File</button>
-                      <input type="file" name="image" id="uploadHidden" hidden>
+                      <input type="file" name="image" id="uploadHidden" >
                       <input type="submit" value="SEND">
                     </div>
                   </form>
@@ -80,8 +80,9 @@
           //selecting all required elements
           const dropArea = document.querySelector(".drag-area"),
           dragText = dropArea.querySelector("header"),
-          button = dropArea.querySelector("button"),
-          input = document.getElementById('uploadHidden');
+          button = dropArea.querySelector("button");
+          const input = document.getElementById('uploadHidden');
+          const form = document.getElementById('uploadForm');
           let file; //this is a global variable used inside multiple functions
 
           button.onclick = ()=>{
@@ -119,8 +120,21 @@
               const dT = new DataTransfer();
               dT.items.add(file);
               input.files = dT.files;
-              dropArea.classList.remove("active");
-              dragText.textContent = "Drag & Drop to Upload File";
+              let fileSize = input.files[0].size;
+              fileSize = fileSize/1024/1024
+              console.log(fileSize, 'filesize');
+              if(fileSize < 4.5)
+              {
+                dropArea.classList.remove("active");
+                dragText.textContent = "Drag & Drop to Upload File";
+              }
+              else
+              {
+                form.reset();
+                alert("The file must be under 4.5 MB");
+                dropArea.classList.remove("active");
+                dragText.textContent = "Drag & Drop to Upload File";
+              }
             }
             else
             {
