@@ -22,12 +22,14 @@
   
   // Replace with your Cloudinary API key and secret
   cloudinary.config({ 
-    cloud_name: process.env.CLOUD_NAME, 
-    api_key: process.env.API_KEY, 
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET
   });
   // Replace with your MongoDB connection string
   const mongoUrl = 'mongodb+srv://r3r2xh93:AQOhP7z9hcoo7TeO@gallery.uxrixqp.mongodb.net/gallery';
+
+  let username = ''; //global variable for documents relations;
   
   //const app = express();
   
@@ -43,7 +45,6 @@
   // Set up the route for the HTML form
   router.post('/upload', async (req, res) => {
     // Make sure a file was uploaded
-    console.log(req.files.image.name);
     if (!req.files || Object.keys(req.files).length === 0) {
       return res.status(400).send('No files were uploaded.');
     }
@@ -73,7 +74,7 @@
     const db = client.db('gallery');
   
     // Insert the image URL into the MongoDB collection
-    await db.collection('images').insertOne({ url: imageUrl, version: version, public_id: public_id, format: format, width: width, height: height, date: date });
+    await db.collection('images').insertOne({ username: username, url: imageUrl, version: version, public_id: public_id, format: format, width: width, height: height, date: date });
   
     console.log(`Inserted image URL into the MongoDB collection: ${imageUrl}`);
   
@@ -84,7 +85,7 @@
   });
   router.post('/signedIn', async (req, res) =>{
 
-    const username = req.body.username;
+    username = req.body.username;
     const password = req.body.password;
 
     const client = await mongodb.MongoClient.connect(mongoUrl, {
@@ -126,7 +127,7 @@
 
     const salt = await bcrypt.genSalt(10);
 
-    const username = req.body.usernameSignUp;
+    username = req.body.usernameSignUp;
     const password = await bcrypt.hash(req.body.passwordSignUp, salt);
 
 
@@ -155,6 +156,10 @@
   
   router.get('/gallery', async (req, res) => {
     // Connect to the MongoDB database
+    if(username == "")
+    {
+      res.sendStatus(404);
+    }
 
     console.log('gallery entered');
     const client = await mongodb.MongoClient.connect(mongoUrl, {
@@ -164,7 +169,7 @@
     const db = client.db('gallery');
   
   // Find all images in the collection
-  const images = await db.collection('images').find().sort({ _id: -1 }).toArray();
+  const images = await db.collection('images').find({username: username}).sort({ _id: -1 }).toArray();
 
   // Close the MongoDB connection
   client.close();

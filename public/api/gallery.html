@@ -55,7 +55,7 @@
                       <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
                       <header>Drag & Drop to Upload File</header>
                       <span>OR</span>
-                      <button>Browse File</button>
+                      <button type="button">Browse File</button>
                       <input type="file" name="image" id="uploadHidden" hidden>
                       <input type="submit" value="SEND">
                     </div>
@@ -81,11 +81,10 @@
           const dropArea = document.querySelector(".drag-area"),
           dragText = dropArea.querySelector("header"),
           button = dropArea.querySelector("button"),
-          input = dropArea.querySelector("input");
+          input = document.getElementById('uploadHidden');
           let file; //this is a global variable used inside multiple functions
 
           button.onclick = ()=>{
-            console.log('test');
             input.click(); //if user click on the button then the input also clicked
           }
           input.addEventListener("change", function(){
