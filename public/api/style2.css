@@ -71,18 +71,16 @@ main
     transition: .5s;
     color: whitesmoke;
     border-radius: 15px;
-    background: #121212;
-    box-shadow: inset -3px -3px 10px #070707,
-            inset 3px 3px 10px #1d1d1d !important;
+    font-weight: bold;
+    border: 1px solid whitesmoke;
 }
 .btn:hover
 {
     transition: .5s;
-    color: rgba(245, 245, 245, 0.21);
+    color: #070707;
     border-radius: 15px;
-    background: #121212;
-    box-shadow: inset -3px -3px 10px #0707071c,
-            inset 3px 3px 10px #1d1d1d36 !important;
+    background: whitesmoke;
+    font-weight: bold;
 }
 .signup
 {
