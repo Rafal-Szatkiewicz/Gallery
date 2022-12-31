@@ -14,34 +14,24 @@
     </head>
     <body >
         <main>
-            <div class="btn-group-vertical bg-dark" role="group" aria-label="Vertical button group">
+            <div class="btn-group-vertical bg-dark flex-column text-center" role="group" aria-label="Vertical button group">
                   <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li class="nav-item bg-dark">
-                      <a href="#" class="nav-link py-3  rounded-0" aria-current="page" title="Home" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <img src="https://res.cloudinary.com/ddriyyppm/image/upload/v1672267417/house-door_zrpguk.svg" alt="Bootstrap" width="30" height="24" class="">
+                      <a href="#" class="nav-link py-3  rounded-0" title="About" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <i alt="Bootstrap" width="30" height="24" class="fa-solid fa-info" style="color: white;font-size: 1.4rem;"></i>
                       </a>
                     </li>
                     <li class="nav-item bg-dark">
-                      <a href="#" class="nav-link py-3  rounded-0" title="Dashboard" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <img src="https://res.cloudinary.com/ddriyyppm/image/upload/v1672267417/house-door_zrpguk.svg" alt="Bootstrap" width="30" height="24" class="">
-                      </a>
-                    </li>
-                    <li class="nav-item bg-dark">
-                      <a href="#" class="nav-link py-3  rounded-0" title="Orders" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <img src="https://res.cloudinary.com/ddriyyppm/image/upload/v1672267417/house-door_zrpguk.svg" alt="Bootstrap" width="30" height="24" class="">
-                      </a>
-                    </li>
-                    <li class="nav-item bg-dark">
-                      <a href="#" class="nav-link py-3  rounded-0" title="Products" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <img src="https://res.cloudinary.com/ddriyyppm/image/upload/v1672267417/house-door_zrpguk.svg" alt="Bootstrap" width="30" height="24" class="">
-                      </a>
-                    </li>
-                    <li class="nav-item bg-dark">
-                      <a href="#" class="nav-link py-3  rounded-0" title="Customers" data-bs-toggle="tooltip" data-bs-placement="right">
-                        <img src="https://res.cloudinary.com/ddriyyppm/image/upload/v1672267417/house-door_zrpguk.svg" alt="Bootstrap" width="30" height="24" class="">
+                      <a href="/signOut" class="nav-link py-3  rounded-0" title="Sign Out" data-bs-toggle="tooltip" data-bs-placement="right">
+                        <i alt="Bootstrap" width="30" height="24" class="fa-solid fa-right-from-bracket" style="color: white;font-size: 1.4rem;"></i>
                       </a>
                     </li>
                   </ul>
+                  <li class="nav-item border-top" style="list-style-type: none; background-color: rgba(0, 0, 0, 0.226) !important;">
+                    <a onclick="deleteAccount()" href="#" class="nav-link py-3  rounded-0" title="Delete Account" data-bs-toggle="tooltip" data-bs-placement="right">
+                      <i alt="Bootstrap" width="30" height="24" class="fa-solid fa-ban" style="color: rgb(255, 0, 0);font-size: 1.4rem;"></i>
+                    </a>
+                  </li>
               </div>
             
               <div id="images">
@@ -57,7 +47,7 @@
                       <span>OR</span>
                       <button type="button" class="uploadButton">Browse File</button>
                       <input type="file" name="image" id="uploadHidden" hidden>
-                      <br>
+                      <div><br></div>
                       <input type="submit" value="SEND" class="uploadButton">
                     </div>
                   </form>
@@ -78,6 +68,33 @@
             pckry.bindDraggabillyEvents( draggie );
           });
 
+          (() => {
+          'use strict'
+          const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+          tooltipTriggerList.forEach(tooltipTriggerEl => {
+            new bootstrap.Tooltip(tooltipTriggerEl)
+          })
+        })()
+        function deleteAccount()
+        {
+          if (confirm("Are you sure to delete the account?") == true) 
+          {
+            const form = document.createElement("form");
+            const element1 = document.createElement("input"); 
+
+            form.method = "POST";
+            form.action = "/deleteAccount";   
+
+            element1.value = "passed";
+            element1.name= "verify";
+            form.appendChild(element1);
+
+            document.body.appendChild(form);
+
+            form.submit();
+            form.remove();
+          }
+        }
           function downloadImage(fileUrl, fileName)
           {
 

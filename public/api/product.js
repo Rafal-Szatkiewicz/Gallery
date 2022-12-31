@@ -1,14 +1,3 @@
-/* global bootstrap: false */
-
-/*(() => {
-    'use strict'
-    const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    tooltipTriggerList.forEach(tooltipTriggerEl => {
-      new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-  })()*/
-
-  // external js: packery.pkgd.js, draggabilly.pkgd.js
   const mongodb = require('mongodb');
   const cloudinary = require('cloudinary').v2;
   //const cloudinary = require('cloudinary-core').Cloudinary.new();
@@ -166,6 +155,26 @@
 
     res.redirect('/gallery');
   });
+  router.post('/deleteAccount', async (req, res) =>{
+
+    if(req.body.verify == "passed")
+    {
+      const client = await mongodb.MongoClient.connect(mongoUrl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      });
+      const db = client.db('gallery');
+      db.collection('images').deleteMany( { username: username } );
+      db.collection('users').deleteOne( { username: username } );
+      //client.close();
+  
+      res.redirect('/');
+    }
+    else
+    {
+      res.redirect('/gallery');
+    }
+  });
   
   router.get('/gallery', async (req, res) => {
     // Connect to the MongoDB database
@@ -236,6 +245,10 @@
       // Send the HTML file to the client
       res.send(output);
     }
+  });
+  router.get('/signOut', async (req,res) => {
+    username = '';
+    res.redirect('/');
   });
 
   let htmlIndex = `<style>* {    margin: 0;    padding: 0;    box-sizing: border-box;    overflow: hidden;}body {    height: 100vh;        background-image: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg);    background-repeat: no-repeat;    background-position: 0%;}main{    width: 100vw;    height: 200vh;    display: flex;    align-items: center;    justify-content: center;    flex-direction: column;    backdrop-filter: blur(25px) saturate(100%) !important;    -webkit-backdrop-filter: blur(25px) saturate(100%) !important;    background-color: #121212d1 !important;    transition: 2s;}.login {    width: 360px;    height: min-content;    padding: 20px;    color: whitesmoke;    border-radius: 36px;    background: #121212;    box-shadow: inset 9px 9px 18px #070707,            inset -9px -9px 18px #1d1d1d;}.login h1 {    font-size: 36px;    margin-bottom: 25px;}.login form {    font-size: 20px;}.login form .form-group {    margin-bottom: 12px;}.login form input[type='submit'] {    font-size: 20px;    margin-top: 15px;}.form-control,.form-control:valid ,.form-control:focus{    color: whitesmoke;    background-color: #121212;}.btn{    transition: .5s;    color: whitesmoke;    border-radius: 15px;    background: #121212;    box-shadow: inset -3px -3px 10px #070707,            inset 3px 3px 10px #1d1d1d !important;}.btn:hover{    transition: .5s;    color: rgba(245, 245, 245, 0.21);    border-radius: 15px;    background: #121212;    box-shadow: inset -3px -3px 10px #0707071c,            inset 3px 3px 10px #1d1d1d36 !important;}.signup{    font-size: 17px;}.signup a{    text-decoration: none;    font-weight: bold;}.text-center{    padding-bottom: 5px;}</style>`;
