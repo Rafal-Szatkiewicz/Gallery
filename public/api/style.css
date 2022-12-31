@@ -225,17 +225,18 @@ main
   {
     margin-top:auto; 
     margin-bottom:auto;
-    height: 4rem;
+    height: 6rem;
   }
   .imageClicked button
   {
+    /*background: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg) no-repeat transparent contain;*/
 
     margin-top:auto; 
     margin-bottom:auto;
-    height: 4rem;
+    height: 6rem;
 
     padding: 0px 0px;
-    font-size: 20px;
+    font-size: 35px;
     font-weight: 500;
     border: none;
     outline: none;
