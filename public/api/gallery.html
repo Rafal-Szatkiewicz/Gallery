@@ -78,6 +78,40 @@
             pckry.bindDraggabillyEvents( draggie );
           });
 
+          function downloadImage(fileUrl, fileName)
+          {
+
+            if (!fileName) fileName = fileUrl.split('\\').pop().split('/').pop();
+            fetch(fileUrl, {
+                headers: new Headers({
+                  'Origin': location.origin
+                }),
+                mode: 'cors'
+              })
+              .then(response => response.blob())
+              .then(blob => {
+                let blobUrl = window.URL.createObjectURL(blob);
+                forceDownload(blobUrl, fileName);
+              })
+              .catch(e => console.error(e));
+          }
+          function forceDownload(blob, fileName)
+          {
+            // Create a new link
+            const anchor = document.createElement('a');
+            anchor.href = blob;
+            anchor.download = fileName;
+            console.log(anchor.download);
+
+            // Append to the DOM
+            document.body.appendChild(anchor);
+
+            // Trigger `click` event
+            anchor.click();
+
+            // Remove element from DOM
+            anchor.remove();
+          }
           function deleteImage(button,publicId)
           {
             let form = button.parentElement;

@@ -217,11 +217,11 @@
         }
         if(image.format != "png")
         {
-          html += `<div class="glass ${blockType} ${sizer}"><div class="glass-border d-flex justify-content-center align-items-center" style="background-image: url(${baseUrl}/v${image.version}/${image.public_id}.${image.format});" onclick="imageClick(this)"><img src="${baseUrl}/c_fill,g_auto/v${image.version}/${image.public_id}.${image.format}" alt="${image.name}"><div class="imageClicked"><button class="noHover">TEST</button><form action="/delete" method="POST"><button type="button" class="noHover" onclick="deleteImage(this,'${image.public_id}')">TEST</button></form></div></div></div>`;
+          html += `<div class="glass ${blockType} ${sizer}"><div class="glass-border d-flex justify-content-center align-items-center" style="background-image: url(${baseUrl}/v${image.version}/${image.public_id}.${image.format});" onclick="imageClick(this)"><img src="${baseUrl}/c_fill,g_auto/v${image.version}/${image.public_id}.${image.format}" alt="${image.name}"><div class="imageClicked"><button class="noHover" onclick="downloadImage('${image.url}','${image.name}')">TEST</button><form action="/delete" method="POST"><button type="button" class="noHover" onclick="deleteImage(this,'${image.public_id}')">TEST</button></form></div></div></div>`;
         }
         else
         {
-          html += `<div class="glass ${blockType} ${sizer}"><div class="glass-border d-flex justify-content-center align-items-center" onclick="imageClick(this)"><img src="${baseUrl}/c_fill,g_auto/v${image.version}/${image.public_id}.${image.format}" alt="${image.name}"><div class="imageClicked"><button class="noHover">TEST</button><form action="/delete" method="POST"><button type="button"  class="noHover" onclick="deleteImage(this,'${image.public_id}')">TEST</button></form></div></div></div>`;
+          html += `<div class="glass ${blockType} ${sizer}"><div class="glass-border d-flex justify-content-center align-items-center" onclick="imageClick(this)"><img src="${baseUrl}/c_fill,g_auto/v${image.version}/${image.public_id}.${image.format}" alt="${image.name}"><div class="imageClicked"><button class="noHover" onclick="downloadImage('${image.url}','${image.name}')">TEST</button><form action="/delete" method="POST"><button type="button"  class="noHover" onclick="deleteImage(this,'${image.public_id}')">TEST</button></form></div></div></div>`;
         }
       }
       html += '<dir id="last"></dir>';
