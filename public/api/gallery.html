@@ -144,6 +144,12 @@
                 elements[i].style.background = 'rgb(255, 255, 255)';
                 elements[i].classList.remove('noHover');
               }
+              let elementsTrash = el.querySelectorAll('.fa-trash-can');
+              for (let i = 0; i < elementsTrash.length; i++) 
+              {
+                elementsTrash[i].style.color = 'red';
+                elementsTrash[i].style.transition = '.5s';
+              }
             el.addEventListener("mouseleave", ()=>
             {
               if(buttonHovered == false)
@@ -159,6 +165,12 @@
                     elements[i].style.background = 'rgb(255, 255, 255, 0)';
                     elements[i].classList.add('noHover');
                   }
+                  let elementsTrash = el.querySelectorAll('.fa-trash-can');
+              for (let i = 0; i < elementsTrash.length; i++) 
+              {
+                elementsTrash[i].style.color = 'rgb(41, 41, 41, 0)';
+                elementsTrash[i].style.transition = '.5s';
+              }
                 }
             });
           }
