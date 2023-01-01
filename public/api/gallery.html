@@ -13,11 +13,11 @@
         <title>Gallery</title>
     </head>
     <body >
-        <main>
+        <main  id="about2">
             <div class="btn-group-vertical bg-dark flex-column text-center" role="group" aria-label="Vertical button group">
                   <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                     <li class="nav-item bg-dark">
-                      <a href="/about" class="nav-link py-3  rounded-0" title="About" data-bs-toggle="tooltip" data-bs-placement="right">
+                      <a onclick="about(this)" href="#" class="nav-link py-3  rounded-0" title="About" data-bs-trigger="hover" data-bs-toggle="tooltip" data-bs-placement="right">
                         <i alt="Bootstrap" width="30" height="24" class="fa-solid fa-info" style="color: white;font-size: 1.4rem;"></i>
                       </a>
                     </li>
@@ -32,6 +32,26 @@
                       <i alt="Bootstrap" width="30" height="24" class="fa-solid fa-ban" style="color: rgb(255, 0, 0);font-size: 1.4rem;"></i>
                     </a>
                   </li>
+                  <div class="bg-dark text-center" id="about">
+                    <div class="btn-group-vertical bg-dark flex-column text-center" role="group" aria-label="Vertical button group">
+                      <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+                        <li class="nav-item bg-dark">
+                          <a onclick="about(this)" href="#" class="nav-link py-3 aboutClass rounded-0" title="About" data-bs-trigger="hover" data-bs-toggle="tooltip" data-bs-placement="right">
+                            <i alt="Bootstrap" width="30" height="24" class="fa-solid fa-info" style="color: white;font-size: 1.4rem;"></i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div id="aboutCenter" class="">
+                      <h1 class="display-3">About</h1>
+                      <br>
+                      <p class="lead">The app's purpose is to store users' images and gifs that they can easily upload by dragging and dropping the file on the marked area or browsing the file by clicking the button. After that, you can download or remove the file from the server by clicking the image and selecting the desired option.</p>
+                      <br>
+                      <p class="lead">The app is using <span class="fw-bold">MongoDB</span> as the database system for the app, which stores all of the user accounts. Images and gifs are stored in <span class="fw-bold">Cloudinary</span> which is used as a CDN while the files' data and URLs are stored in the database. <span class="fw-bold">Bootstrap</span> was used to assist with the design and layout of the app, helping to make it visually appealing and easy to use. <span class="fw-bold">Node.js</span> and <span class="fw-bold">Express</span> were used to build the back-end of the app, handling server-side tasks such as routing and handling database requests. <span class="fw-bold">Packery</span> was utilized to create a masonry layout for the gallery and to add the ability to drag and rearrange images. <span class="fw-bold">Bcrypt</span> was employed to securely hash passwords, ensuring that user account information is kept safe. Each of these technologies played a vital role in the creation of the app.</p>
+                      <br>
+                      <p class="display-6"><a href="https://github.com/Rafal-Szatkiewicz/Gallery">Github</a></p>
+                    </div>
+                  </div>
               </div>
             
               <div id="images">
@@ -75,6 +95,24 @@
             new bootstrap.Tooltip(tooltipTriggerEl)
           })
         })()
+        function about(el)
+        {
+          const elements = document.querySelectorAll('.aboutClass');
+          const about = document.getElementById('about2');
+          if(elements[0].classList.contains('aboutClick'))
+          {
+            about.style.transform = "translate(0vw)";
+            elements[0].classList.remove("aboutClick");
+            elements[1].classList.remove("aboutClick");
+          }
+          else
+          {
+            about.style.transform = "translate(100vw)";
+            elements[0].classList.add("aboutClick");
+            elements[1].classList.add("aboutClick");
+          }
+          
+        }
         function deleteAccount()
         {
           if (confirm("Are you sure to delete the account?") == true) 

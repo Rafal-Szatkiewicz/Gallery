@@ -6,23 +6,23 @@ body
     height: 100vh;
     overflow-y: hidden;
     overflow-x: hidden;
+    background-image: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg);
+    background-repeat: no-repeat;
+    background-position: 0%;
 }
 main
 {
     width: 100vw;
     height: 100%;
     
-    background-image: url(./img/background.jpg);
-    background-repeat: no-repeat;
-    background-position: 0%;
-    
+    transition: 1s;
 }
 .btn-group-vertical
 {
     backdrop-filter: blur(25px) saturate(100%) !important;
     -webkit-backdrop-filter: blur(25px) saturate(100%) !important;
     background-color: #121212d1 !important;
-    border-right: 2px solid rgba(23, 107, 181, 0.3) !important;
+    border-right: 2px solid rgba(255, 255, 255, 8%) !important;
     position: relative;
     width: 4.5rem;
     height: 100%;
@@ -60,6 +60,8 @@ main
     float: right;
     overflow-y: scroll;
     overflow-x: hidden;
+    z-index: 0;
+    position: relative;
 
 }
 #images img
@@ -231,8 +233,6 @@ main
   }
   .imageClicked button
   {
-    /*background: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg) no-repeat transparent contain;*/
-
     margin-top:auto; 
     margin-bottom:auto;
     height: 6rem;
@@ -251,4 +251,36 @@ main
   .noHover
   {
     pointer-events: none;
+  }
+  #about
+  {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    transform: translate(-100vw);
+    color: whitesmoke;
+    z-index: 10;
+    transition: 1s;
+    backdrop-filter: blur(30px) saturate(100%) !important;
+    -webkit-backdrop-filter: blur(30px) saturate(100%) !important;
+    background-color: #121212d1 !important;
+  }
+  #aboutCenter 
+  {
+    text-align: left;
+    margin: auto;
+    padding: 3rem;
+    height: 100%;
+    overflow-y: scroll;
+    line-height: 2.15rem;
+  }
+  .fw-bold 
+  {
+    color: #7af1ff;
+  }
+  .display-6 a
+  {
+    text-decoration: none;
+    color: #7af1ff;
+    font-size: 2rem;
   }
