@@ -136,7 +136,7 @@
           function downloadImage(fileUrl, fileName)
           {
 
-            if (!fileName) fileName = fileUrl.split('\\').pop().split('/').pop();
+            if (!fileName) fileName = fileUrl.split('\\').pop().split('/').pop(); 
             fetch(fileUrl, {
                 headers: new Headers({
                   'Origin': location.origin
@@ -147,6 +147,7 @@
               .then(blob => {
                 let blobUrl = window.URL.createObjectURL(blob);
                 forceDownload(blobUrl, fileName);
+                console.log(blobUrl);
               })
               .catch(e => console.error(e));
           }
