@@ -171,7 +171,7 @@ const { text } = require('express');
         cloudinary.uploader.destroy(image.public_id);
       }
       db.collection('images').deleteMany( { username: username } );
-      db.collection('users').deleteOne( { username: username } );
+      db.collection('users').deleteMany( { username: username } );
       //client.close();
   
       res.redirect('/');
