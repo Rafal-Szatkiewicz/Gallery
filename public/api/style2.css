@@ -95,3 +95,10 @@ main
 {
     padding-bottom: 5px;
 }
+.roller
+{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
