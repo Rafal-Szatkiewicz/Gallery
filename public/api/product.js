@@ -174,6 +174,7 @@ const { text } = require('express');
       db.collection('users').deleteMany( { username: username } );
       //client.close();
   
+      username = '';
       res.redirect('/');
     }
     else
