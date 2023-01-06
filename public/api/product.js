@@ -7,6 +7,7 @@
   const fs = require('fs');
   const router = express.Router();
   const bcrypt = require('bcryptjs');
+const { text } = require('express');
   require("dotenv").config();
   
   // Replace with your Cloudinary API key and secret
@@ -46,7 +47,7 @@
     const result = await cloudinary.uploader.upload(file.tempFilePath);
     //console.log(result);
     const fileName = file.name;
-    const imageUrl = result.url;
+    const imageUrl = result.url.replace("http","https");
     const version = result.version;
     const public_id = result.public_id;
     const format = result.format;
