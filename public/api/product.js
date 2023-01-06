@@ -165,7 +165,11 @@ const { text } = require('express');
         useUnifiedTopology: true
       });
       const db = client.db('gallery');
-      //cloudinary.uploader.destroy(username);
+      const images = await db.collection('images').find({username: username}).sort({ _id: -1 }).toArray();
+      for (const image of images)
+      {
+        cloudinary.uploader.destroy(image.public_id);
+      }
       db.collection('images').deleteMany( { username: username } );
       db.collection('users').deleteOne( { username: username } );
       //client.close();
