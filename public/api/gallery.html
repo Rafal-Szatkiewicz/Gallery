@@ -74,6 +74,11 @@
                   </form>
                 </div>
             </div>
+            <div id="lightbox">
+              <button id="closeLight" style="border: none; background-color: whitesmoke; font-size: 1.3rem;"><i class="fa-solid fa-x"></i></button>
+            </div>
+
+            </div>
         </main>
         <script>
           //drag
@@ -134,9 +139,21 @@
             form.remove();
           }
         }
+          function lightbox(url)
+          {
+            const lightbox = document.getElementById("lightbox");
+            const close = document.getElementById("closeLight");
+            lightbox.style.backgroundImage = `url(${url})`;
+            lightbox.style.opacity = "100";
+            lightbox.style.zIndex = "20";
+            close.addEventListener("click", () => 
+            {
+              lightbox.style.opacity = "0";
+              lightbox.style.zIndex = "-10";
+            });
+          }
           function downloadImage(fileUrl, fileName)
           {
-
             if (!fileName) fileName = fileUrl.split('\\').pop().split('/').pop(); 
             fetch(fileUrl, {
                 headers: new Headers({
