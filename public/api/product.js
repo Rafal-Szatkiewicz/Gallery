@@ -20,6 +20,9 @@ const { text } = require('express');
   const mongoUrl = 'mongodb+srv://r3r2xh93:AQOhP7z9hcoo7TeO@gallery.uxrixqp.mongodb.net/gallery';
 
   let username = ''; //global variable for documents relations;
+
+  let client = null;
+  let db = null;
   
   //const app = express();
   
@@ -55,12 +58,6 @@ const { text } = require('express');
     const height = result.height;
     const date = result.created_at;
   
-    // Connect to the MongoDB database
-    const client = await mongodb.MongoClient.connect(mongoUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
-    const db = client.db('gallery');
   
     // Insert the image URL into the MongoDB collection
     await db.collection('images').insertOne({ username: username, url: imageUrl, version: version, public_id: public_id, format: format, width: width, height: height, date: date, name: fileName});
@@ -68,7 +65,7 @@ const { text } = require('express');
     console.log(`Inserted image URL into the MongoDB collection: ${imageUrl}`);
   
     // Close the MongoDB connection
-    client.close();
+    //client.close();
   
     res.redirect('/gallery');
   });
@@ -77,11 +74,6 @@ const { text } = require('express');
     username = req.body.username;
     const password = req.body.password;
 
-    const client = await mongodb.MongoClient.connect(mongoUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
-    const db = client.db('gallery');
   
     const verify = await db.collection('users').findOne({username: username});
     //console.log(verify);
@@ -89,7 +81,7 @@ const { text } = require('express');
     if(verify === null)
     {
 
-      client.close();
+      //client.close();
       console.log("invalid data");
       res.redirect('/invalidLogin');
     }
@@ -101,12 +93,12 @@ const { text } = require('express');
       if(verifyHash == true)
       {
         console.log("logged in");
-        client.close();
+        //client.close();
         res.redirect('/gallery');
       }
       else
       {
-        client.close();
+        //client.close();
         console.log("invalid data");
         res.redirect('/invalidLogin');
       }
@@ -120,23 +112,18 @@ const { text } = require('express');
     const password = await bcrypt.hash(req.body.passwordSignUp, salt);
 
 
-    const client = await mongodb.MongoClient.connect(mongoUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
-    const db = client.db('gallery');
   
     const distinct = await db.collection('users').findOne({username: username});
     if(distinct === null)
     {
       console.log("new user added");
       await db.collection('users').insertOne({ username: username, password: password});
-      client.close();
+      //client.close();
       res.redirect('/gallery');
     }
     else
     {
-      client.close();
+      //client.close();
       console.log("username taken");
       res.redirect('/invalid');
     }
@@ -146,11 +133,6 @@ const { text } = require('express');
     const id = req.body.id;
     cloudinary.uploader.destroy(id);
 
-    const client = await mongodb.MongoClient.connect(mongoUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
-    const db = client.db('gallery');
     db.collection('images').deleteOne( { public_id: id } );
     //client.close();
 
@@ -160,11 +142,6 @@ const { text } = require('express');
 
     if(req.body.verify == "passed")
     {
-      const client = await mongodb.MongoClient.connect(mongoUrl, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-      });
-      const db = client.db('gallery');
       const images = await db.collection('images').find({username: username}).sort({ _id: -1 }).toArray();
       for (const image of images)
       {
@@ -192,11 +169,6 @@ const { text } = require('express');
     else
     {
         console.log('gallery entered');
-        const client = await mongodb.MongoClient.connect(mongoUrl, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        });
-        const db = client.db('gallery');
       
       // Find all images in the collection
       const images = await db.collection('images').find({username: username}).sort({ _id: -1 }).toArray();
@@ -261,6 +233,12 @@ const { text } = require('express');
   let htmlIndex = `<style>* {    margin: 0;    padding: 0;    box-sizing: border-box;    overflow: hidden;}body {    height: 100vh;        background-image: url(https://res.cloudinary.com/ddriyyppm/image/upload/v1672267405/background_rkrvc3.jpg);    background-repeat: no-repeat;    background-position: 0%;}main{    width: 100vw;    height: 200vh;    display: flex;    align-items: center;    justify-content: center;    flex-direction: column;    backdrop-filter: blur(25px) saturate(100%) !important;    -webkit-backdrop-filter: blur(25px) saturate(100%) !important;    background-color: #121212d1 !important;    transition: 2s;}.login {    width: 360px;    height: min-content;    padding: 20px;    color: whitesmoke;    border-radius: 36px;    background: #121212;    box-shadow: inset 9px 9px 18px #070707,            inset -9px -9px 18px #1d1d1d;}.login h1 {    font-size: 36px;    margin-bottom: 25px;}.login form {    font-size: 20px;}.login form .form-group {    margin-bottom: 12px;}.login form input[type='submit'] {    font-size: 20px;    margin-top: 15px;}.form-control,.form-control:valid ,.form-control:focus{    color: whitesmoke;    background-color: #121212;}.btn{    transition: .5s;    color: whitesmoke;    border-radius: 15px;    font-weight: bold;    border: 1px solid whitesmoke;}.btn:hover{    transition: .5s;    color: #070707;    border-radius: 15px;    background: whitesmoke;    font-weight: bold;}.signup{    font-size: 17px;}.signup a{    text-decoration: none;    font-weight: bold;}.text-center{    padding-bottom: 5px;}.roller{    height: 100vh;    display: flex;    align-items: center;    justify-content: center;}</style>`;
 
   router.get('/', async (req, res) => {
+
+    client = await mongodb.MongoClient.connect(mongoUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    db = client.db('gallery');
 
     const file = await fs.promises.readFile(path.join(__dirname, './index.html'), 'utf8');
     const output = file.replace('<link rel="stylesheet" href="style2.css">', htmlIndex);
