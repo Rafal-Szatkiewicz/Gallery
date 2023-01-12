@@ -19,14 +19,14 @@
                             <form class="needs-validation" action="/signedIn" method="POST">
                                 <div class="form-group was-validated">
                                     <label class="form-label" for="email">Username</label>
-                                    <input class="form-control" type="text" id="username" name="username" required>
+                                    <input class="form-control" type="text" id="username" name="username" maxlength="15" pattern="[A-Za-z0-9_]+" required>
                                     <div class="invalid-feedback">
                                         Please enter your email username <span class="check"></span>
                                     </div>
                                 </div>
                                 <div class="form-group was-validated">
                                     <label class="form-label" for="password">Password</label>
-                                    <input class="form-control" type="password" id="password" name="password" required>
+                                    <input class="form-control" type="password" id="password" name="password" maxlength="20" pattern="[A-Za-z0-9_]+" required>
                                     <div class="invalid-feedback">
                                         Please enter your password <span class="check"></span>
                                     </div>
@@ -49,14 +49,14 @@
                             <form class="needs-validation" action="/signedUp" method="POST">
                                 <div class="form-group was-validated" id="usernameSignUpValidation">
                                     <label class="form-label" for="email">Username</label>
-                                    <input class="form-control" type="text" id="usernameSignUp" name="usernameSignUp" required>
+                                    <input class="form-control" type="text" id="usernameSignUp" name="usernameSignUp" maxlength="15" pattern="[A-Za-z0-9_]+" required>
                                     <div class="invalid-feedback">
                                         Please enter your email username <span></span>
                                     </div>
                                 </div>
                                 <div class="form-group was-validated">
                                     <label class="form-label" for="password">Password</label>
-                                    <input class="form-control" type="password" id="passwordSignUp" name="passwordSignUp" required>
+                                    <input class="form-control" type="password" id="passwordSignUp" name="passwordSignUp" maxlength="20" pattern="[A-Za-z0-9_]+" required>
                                     <div class="invalid-feedback">
                                         Please enter your password
                                     </div>
