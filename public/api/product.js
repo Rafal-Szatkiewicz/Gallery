@@ -7,7 +7,6 @@
   const fs = require('fs');
   const router = express.Router();
   const bcrypt = require('bcryptjs');
-const { text } = require('express');
   require("dotenv").config();
   
   // Replace with your Cloudinary API key and secret
@@ -17,7 +16,7 @@ const { text } = require('express');
     api_secret: process.env.API_SECRET
   });
   // Replace with your MongoDB connection string
-  const mongoUrl = 'mongodb+srv://r3r2xh93:AQOhP7z9hcoo7TeO@gallery.uxrixqp.mongodb.net/gallery';
+  const mongoUrl = process.env.MONGO_URL;
 
   let username = ''; //global variable for documents relations;
 
